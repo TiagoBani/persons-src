@@ -1,0 +1,10 @@
+version: '3.9'
+services:
+  persons-db:
+    image: 'postgres:14.2-bullseye'
+    ports:
+      - 5432:5432
+    env_file:
+      - .env
+    volumes:
+      - ./db-data/:/var/lib/postgresql/data/
