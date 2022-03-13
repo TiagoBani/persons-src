@@ -7,8 +7,6 @@ import com.tiagobani.persons.ports.ICreatePersonsPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import javax.validation.Valid;
-
 @Component
 @RequiredArgsConstructor
 public class CreatePersonAdapter implements ICreatePersonsUseCase {
@@ -16,7 +14,7 @@ public class CreatePersonAdapter implements ICreatePersonsUseCase {
     private final ICreatePersonsPort port;
 
     @Override
-    public void handle(@Valid PersonCreateRequest request) {
+    public void handle(PersonCreateRequest request) {
         port.handle(new PersonCreateResponse(request.getFirstName(), request.getLastName(), request.getEmail()));
     }
 }

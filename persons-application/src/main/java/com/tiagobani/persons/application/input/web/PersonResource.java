@@ -5,6 +5,7 @@ import com.tiagobani.persons.domains.domain.PersonFindResultDto;
 import com.tiagobani.persons.domains.usecases.ICreatePersonsUseCase;
 import com.tiagobani.persons.domains.usecases.IFindAllPersonsUseCase;
 import com.tiagobani.persons.domains.usecases.IFindByIdPersonsUseCase;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -38,10 +39,8 @@ public class PersonResource {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void postCreatePersons(
-            @RequestBody PersonCreateRequest personCreateRequest
-    ){
-        createPersonsUseCase.handle(personCreateRequest);
+    public void postCreatePersons(@Valid @RequestBody PersonCreateRequest request){
+        createPersonsUseCase.handle(request);
     }
 
 }
