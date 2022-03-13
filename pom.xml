@@ -19,7 +19,10 @@
     </parent>
     <modules>
         <module>persons-data</module>
-        <module>persons-web</module>
+        <module>persons-application</module>
+        <module>persons-domains</module>
+        <module>persons-ports</module>
+        <module>persons-adapters</module>
     </modules>
     <build>
         <plugins>
