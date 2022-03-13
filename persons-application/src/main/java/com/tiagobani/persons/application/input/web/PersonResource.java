@@ -1,7 +1,7 @@
 package com.tiagobani.persons.application.input.web;
 
 import com.tiagobani.persons.domains.domain.PersonCreateRequest;
-import com.tiagobani.persons.domains.domain.PersonFindResultDto;
+import com.tiagobani.persons.domains.domain.PersonFindResult;
 import com.tiagobani.persons.domains.usecases.ICreatePersonsUseCase;
 import com.tiagobani.persons.domains.usecases.IFindAllPersonsUseCase;
 import com.tiagobani.persons.domains.usecases.IFindByIdPersonsUseCase;
@@ -25,7 +25,7 @@ public class PersonResource {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Set<PersonFindResultDto> getFindAllPersons(){
+    public Set<PersonFindResult> getFindAllPersons(){
         return Optional.of(findAllPersonsUseCase.handle())
                 .filter(result -> !result.isEmpty())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT));
@@ -33,7 +33,7 @@ public class PersonResource {
 
     @GetMapping(path = "/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public PersonFindResultDto getFindByIdPersons(@PathVariable("id") UUID personId){
+    public PersonFindResult getFindByIdPersons(@PathVariable("id") UUID personId){
         return findByIdPersonsUseCase.handle(personId).orElseThrow(() -> new ResponseStatusException(HttpStatus.NO_CONTENT));
     }
 

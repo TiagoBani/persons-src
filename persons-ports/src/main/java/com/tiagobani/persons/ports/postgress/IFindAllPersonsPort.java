@@ -1,4 +1,4 @@
-package com.tiagobani.persons.ports;
+package com.tiagobani.persons.ports.postgress;
 
 import com.tiagobani.persons.data.models.Person;
 import org.springframework.stereotype.Component;

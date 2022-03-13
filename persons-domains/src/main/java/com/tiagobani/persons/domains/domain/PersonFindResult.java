@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
 
-public class PersonFindResultDto {
+public class PersonFindResult {
 
     private UUID id;
     private String firstName;
@@ -12,17 +12,20 @@ public class PersonFindResultDto {
     private String email;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private PersonAddressResponse address;
 
-    public PersonFindResultDto() {
+    public PersonFindResult() {
     }
 
-    public PersonFindResultDto(UUID id, String firstName, String lastName, String email, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public PersonFindResult(UUID id, String firstName, String lastName, String email, LocalDateTime createdAt,
+                            LocalDateTime updatedAt, PersonAddressResponse address) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
+        this.address = address;
     }
 
     public UUID getId() {
@@ -73,30 +76,40 @@ public class PersonFindResultDto {
         this.updatedAt = updatedAt;
     }
 
+    public PersonAddressResponse getAddress() {
+        return address;
+    }
+
+    public void setAddress(PersonAddressResponse address) {
+        this.address = address;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonFindResultDto that = (PersonFindResultDto) o;
+        PersonFindResult that = (PersonFindResult) o;
         return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) &&
                 Objects.equals(lastName, that.lastName) && Objects.equals(email, that.email) &&
-                Objects.equals(createdAt, that.createdAt) && Objects.equals(updatedAt, that.updatedAt);
+                Objects.equals(createdAt, that.createdAt) && Objects.equals(updatedAt, that.updatedAt) &&
+                Objects.equals(address, that.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName, email, createdAt, updatedAt);
+        return Objects.hash(id, firstName, lastName, email, createdAt, updatedAt, address);
     }
 
     @Override
     public String toString() {
-        return "PersonFindResultDto{" +
+        return "PersonFindResult{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", createdAt=" + createdAt +
                 ", updatedAt=" + updatedAt +
+                ", address=" + address +
                 '}';
     }
 }

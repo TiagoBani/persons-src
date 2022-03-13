@@ -12,24 +12,31 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
-@Table(name = "persons")
-@Data
+@Table(name = "addresses")
 @NoArgsConstructor
 @AllArgsConstructor
-public class Person {
+@Data
+public class Address {
 
     @Id
     @GenericGenerator(name = "UUIDGenerator", strategy = "uuid2")
     @GeneratedValue(generator = "UUIDGenerator")
     @Column(name = "id", updatable = false)
     private UUID id;
-
-    @Column(name = "first_name", nullable = false)
-    private String firstName;
-    @Column(name = "last_name", nullable = false)
-    private String lastName;
-    @Column(name = "email")
-    private String email;
+    @Column(name = "postal_code")
+    private String postalCode;
+    @Column(name = "street_name")
+    private String streetName;
+    @Column(name = "street_number")
+    private String streetNumber;
+    @Column(name = "complement")
+    private String complement;
+    @Column(name = "neighborhood")
+    private String neighborhood;
+    @Column(name = "city")
+    private String city;
+    @Column(name = "state")
+    private String state;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
@@ -38,7 +45,7 @@ public class Person {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "id", referencedColumnName = "person_id")
-    private Address address;
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "address")
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person person;
 }

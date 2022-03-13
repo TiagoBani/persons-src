@@ -15,11 +15,15 @@ public class PersonCreateRequest {
     @NotNull
     @Email
     private String email;
+    @NotNull
+    @Size(min = 7, max = 9)
+    private String postalCode;
 
-    public PersonCreateRequest(String firstName, String lastName, String email) {
+    public PersonCreateRequest(String firstName, String lastName, String email, String postalCode) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.postalCode = postalCode;
     }
 
     public String getFirstName() {
@@ -46,12 +50,21 @@ public class PersonCreateRequest {
         this.email = email;
     }
 
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
     @Override
     public String toString() {
         return "PersonCreateRequest{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", postalCode='" + postalCode + '\'' +
                 '}';
     }
 }
